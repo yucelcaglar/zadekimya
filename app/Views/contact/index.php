@@ -1,0 +1,4 @@
+<?= $this->extend('layouts/site') ?>
+<?= $this->section('content') ?>
+<section class="page-hero page-hero--compact"><div class="container"><p class="eyebrow">İLETİŞİM</p><h1>Size yardımcı olmaktan memnuniyet duyarız.</h1><p>Ürünlerimiz, teknik ihtiyaçlarınız ve teklif talepleriniz için bizimle iletişime geçin.</p></div></section><section class="section container contact-grid"><div><p class="eyebrow">ADRES</p><h2>Zade Petrokimya</h2><address>Şekerpınar Mahallesi Anadolu Caddesi<br>Melis Sokak No: 3-3A<br>41420 Çayırova, Kocaeli</address></div><div><p class="eyebrow">TELEFON</p><h2><a href="tel:+902626580202">+90 262 658 02 02</a></h2><p><a href="tel:+905053120537">+90 505 312 05 37</a></p></div><div><p class="eyebrow">E-POSTA</p><h2><a href="mailto:info@zadekimya.com">info@zadekimya.com</a></h2><p>Pazartesi – Cuma, 09:00 – 18:00</p></div></section>
+<?= $this->endSection() ?>

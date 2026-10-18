@@ -1,0 +1,5 @@
+<?= $this->extend('layouts/site') ?>
+<?= $this->section('content') ?>
+<section class="page-hero"><div class="container"><p class="eyebrow">ÜRÜN GRUBU</p><h1><?= esc($category['name']) ?></h1><p><?= esc($category['description'] ?: 'Endüstriyel ihtiyaçlara uygun ürün gruplarımızı inceleyin.') ?></p></div></section>
+<section class="section container"><div class="breadcrumbs"><a href="<?= site_url() ?>">Ana Sayfa</a><span>/</span><span><?= esc($category['name']) ?></span></div><div class="product-grid product-grid--large"><?php foreach ($products as $product): ?><a class="product-card" href="<?= site_url('urun/' . $product['slug']) ?>"><div class="product-card__visual"><?php if ($product['image_path']): ?><img src="<?= base_url(esc($product['image_path'])) ?>" alt="<?= esc($product['title']) ?>"><?php else: ?><span><?= esc(mb_substr($category['name'], 0, 1)) ?></span><?php endif; ?></div><div class="product-card__content"><small><?= esc($category['name']) ?></small><h2><?= esc($product['title']) ?></h2><span>Detayları incele →</span></div></a><?php endforeach; ?></div></section>
+<?= $this->endSection() ?>
