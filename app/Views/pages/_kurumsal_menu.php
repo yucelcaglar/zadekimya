@@ -1,0 +1,2 @@
+<?php $links = ['hakkimizda' => 'Hakkımızda', 'prensiplerimiz' => 'Prensiplerimiz', 'kalite-politikamiz' => 'Kalite Politikamız']; ?>
+<nav class="side-menu" aria-label="Kurumsal"><h2>Kurumsal</h2><?php foreach ($links as $slug => $label): ?><a href="<?= site_url('sayfa/' . $slug) ?>"<?= $page['slug'] === $slug ? ' class="active" aria-current="page"' : '' ?>><?= esc($label) ?></a><?php endforeach; ?><a href="<?= site_url('iletisim') ?>">İletişim →</a></nav>

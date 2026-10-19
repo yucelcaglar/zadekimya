@@ -60,7 +60,18 @@ class ProductController extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $oldImage = $product['image_path'] ?? null;
+        $replaced = isset($data['image_path']);
+
+        if (! $replaced && $this->request->getPost('remove_image')) {
+            $data['image_path'] = null;
+        }
+
         $this->products->update($id, $data);
+
+        if ($oldImage !== null && ($replaced || array_key_exists('image_path', $data))) {
+            $this->deleteImageFile($oldImage);
+        }
 
         return redirect()->to(site_url('yonetim/urunler'))->with('success', 'Ürün güncellendi.');
     }
@@ -71,6 +82,19 @@ class ProductController extends BaseController
         $this->products->delete($id);
 
         return redirect()->to(site_url('yonetim/urunler'))->with('success', 'Ürün kaldırıldı.');
+    }
+
+    private function deleteImageFile(string $path): void
+    {
+        // Yalnızca yönetim panelinden yüklenen dosyalar silinir.
+        if (! str_starts_with($path, 'uploads/products/') || str_contains($path, '..')) {
+            return;
+        }
+
+        $file = FCPATH . $path;
+        if (is_file($file)) {
+            unlink($file);
+        }
     }
 
     private function formData(?array $product = null): array

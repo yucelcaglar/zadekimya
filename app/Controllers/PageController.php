@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CategoryModel;
 use App\Models\PageModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
@@ -15,10 +16,13 @@ class PageController extends BaseController
             throw PageNotFoundException::forPageNotFound();
         }
 
-        return view('pages/show', [
+        $view = is_file(APPPATH . 'Views/pages/' . $page['slug'] . '.php') ? 'pages/' . $page['slug'] : 'pages/show';
+
+        return view($view, [
             'title' => ($page['seo_title'] ?: $page['title']) . ' | Zade Petrokimya',
             'description' => $page['seo_description'] ?: $page['excerpt'],
             'page' => $page,
+            'categories' => $slug === 'katalog' ? (new CategoryModel())->active() : [],
         ]);
     }
 }
